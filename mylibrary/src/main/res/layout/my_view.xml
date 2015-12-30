@@ -1,0 +1,58 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/parent_relative_layout"
+    android:layout_below="@+id/roundedImageView">
+
+
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/drag_btn"
+        android:id="@+id/dragBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10px"
+        android:layout_marginBottom="10px"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/submenu_layout"
+        android:layout_above="@id/dragBtn"
+        android:visibility="gone"
+        >
+
+        <Button
+            android:layout_width="135dp"
+            android:layout_height="45dp"
+            android:id="@+id/category1"
+            android:layout_alignParentLeft="true"
+            />
+        <Button
+            android:layout_width="135dp"
+            android:layout_height="45dp"
+            android:id="@+id/category2"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@id/category1"/>
+        <Button
+            android:layout_width="135dp"
+            android:layout_height="45dp"
+            android:id="@+id/category3"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@id/category2"/>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+
+

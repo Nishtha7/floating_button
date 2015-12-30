@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+}
+group = 'com.example.floating_button' // Change this to match your package name
+version = '1.0' // Change this to match your version number
+
+task generateSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier 'sources'
+}
+
+task generateJavaDocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath()
+            .join(File.pathSeparator))
+}
+
+task generateJavaDocsJar(type: Jar) {
+    from generateJavaDocs.destinationDir
+    classifier 'javadoc'
+}
+generateJavaDocsJar.dependsOn generateJavaDocs
+
+artifacts {
+    archives generateJavaDocsJar
+    archives generateSourcesJar
+}
+bintray {
+    user = 'nishthaudai'
+    key = 'ecec9d9d0e08fbbb2570ce688fbd4940ddf30614'
+    pkg {
+        repo = 'maven'
+        name = 'com.example.floating_button'
+
+        version {
+            name = 'add1'
+            desc = 'add upload'
+            released  = 30/12/15
+            vcsTag = '1.0'
+        }
+
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/Nishtha7/floating_button.git'
+        websiteUrl = 'https://github.com/Nishtha7/floating_button'
+    }
+    configurations = ['archives']
+}
